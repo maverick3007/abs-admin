@@ -1,0 +1,48 @@
+<div bsModal #docselectModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button class="close" (click)="docselectModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+				<h4 class="modal-title">Selecteer een document</h4>
+			</div>
+			<div class="modal-body" style="background: black">
+
+
+				<ba-card class="row" baCardClass="docselect-card  with-scroll">
+					<table class="table table-hover">
+						<tbody>
+							<tr *ngFor="let doc of documents" [class.info]="(selectedDocument === doc)" class="no-top-border" (click)="pickDocument(doc)">
+								<td></td>
+								<td class="align-left">{{doc.Id}}</td>
+								<td class="align-right">{{doc.Date01}}</td>
+								<td class="align-right">{{doc.Date02}}</td>
+								<td class="align-right">{{doc.Amount}}</td>
+								<td class="align-right">{{doc.Comment}}</td>
+								<td class="align-right">{{doc.Reference}}</td>
+							</tr>
+						</tbody>
+					</table>
+					<div *ngIf="loading">
+						<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+						<span class="sr-only">Loading...</span>
+					</div>
+					<div *ngIf="!loading" style="margin-top=10px">
+						<button (click)="loadMore()" *ngIf="hasMoreEntries" type="button" class="btn btn-default btn-with-icon"><i class="ion-search"></i>Meer documenten</button>
+					</div>
+				</ba-card>
+			</div>
+
+			<div class="modal-footer">
+				<div *ngIf="!!selectedDocument">
+					<p>{{selectedDocument.Id}} {{selectedDocument.Name}}</p>
+					<button class="btn btn-primary confirm-btn" (click)="selectDocument()">Selecteer</button>
+					<div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

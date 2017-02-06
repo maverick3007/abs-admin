@@ -1,0 +1,53 @@
+<div *ngIf="(!!customer)">
+	<div *ngIf="loading">
+
+		<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+		<span class="sr-only">Loading...</span>
+	</div>
+	<div style="margin-bottom:20px">		
+		</div>
+			<div class="horizontal-scroll">
+				<table class="table table-bordered table-condensed">
+					<tr>
+						<td>Id</td>
+						<td>{{customer.Id}}</td>
+					</tr>
+					<tr>
+						<td>Type</td>
+						<td>{{customer.Type}}</td>
+					</tr>
+					<tr>
+						<td>Naam</td>
+						<td>{{customer.Name}}</td>
+					</tr>
+					<tr>
+						<td>Adres</td>
+						<td>{{customer.Address}}</td>
+					</tr>
+					<tr>
+						<td>Postcode</td>
+						<td>{{customer.PostalCode}}</td>
+					</tr>
+					<tr>
+						<td>Plaats</td>
+						<td>{{customer.City}}</td>
+					</tr>
+					<tr>
+						<td>Tel1</td>
+						<td>{{customer.Tel1}}</td>
+					</tr>
+					<tr>
+						<td>Tel2</td>
+						<td>{{customer.Tel2}}</td>
+					</tr>
+					<tr>
+						<td>Email</td>
+						<td>{{customer.Email}}</td>
+					</tr>
+					<tr *ngIf="(customer.Type === 'F')">
+						<td>BTW</td>
+						<td>{{customer.VAT}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>

@@ -1,0 +1,18 @@
+<div class="col-md-6">
+	<div class="horizontal-scroll">
+		<table class="table table-bordered table-condensed">
+			<tr>
+				<td>Totaal Excl. BTW</td>
+				<td>{{excVat | currency:'EUR':true:'1.2-2' }}</td>
+			</tr>
+			<tr>
+				<td>BTW</td>
+				<td>{{Vat | currency:'EUR':true:'1.2-2' }}</td>
+			</tr>
+			<tr>
+				<td>Totaal Incl. BTW</td>
+				<td>{{incVat | currency:'EUR':true:'1.2-2' }}</td>
+			</tr>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,15 @@
+<div *ngIf="loading">
+	<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+	<span class="sr-only">Loading...</span>
+</div>
+<div class="btns-same-width-lg">
+	<div class="button-wrapper" *ngFor="let counter of specialDocs">
+		<button type="button" class="btn btn-info btn-with-icon" (click)="gotoDocSelection(counter)"><i class="ion-document-text"></i>{{counter.Object.Id}} {{counter.Object.Name}} ({{counter.Counter}})</button>
+	</div>
+	<div class="button-wrapper" *ngFor="let counter of ubDocs">
+		<button type="button" class="btn btn-warning btn-with-icon" (click)="gotoDocSelection(counter)"><i class="ion-document-text"></i>{{counter.Object.Id}} {{counter.Object.Name}} ({{counter.Counter}})</button>
+	</div>
+	<div class="button-wrapper" *ngFor="let counter of ulDocs">
+		<button type="button" class="btn btn-primary btn-with-icon" (click)="gotoDocSelection(counter)"><i class="ion-document-text"></i>{{counter.Object.Id}} {{counter.Object.Name}} ({{counter.Counter}})</button>
+	</div>
+</div>

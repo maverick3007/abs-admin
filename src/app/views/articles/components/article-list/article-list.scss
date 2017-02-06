@@ -1,0 +1,31 @@
+ul.products li {
+    width: 200px;
+    display: inline-block;
+}
+
+.imgdiv {
+    border: 1px solid darkslategrey;
+    width: 200px;
+    height: 200px;
+    background: #ffffff;
+    line-height: 200px;
+    text-align: center;
+}
+.catimg {
+    max-width:150px !important;
+    max-height:150px !important;
+    vertical-align: middle;
+}
+
+.arttxt {
+    height: 100px;
+    overflow: hidden;
+}
+
+.brandimg{
+    position: absolute;
+    top:0;
+    left:0;
+    max-width:50px;
+    max-height:50px;
+}

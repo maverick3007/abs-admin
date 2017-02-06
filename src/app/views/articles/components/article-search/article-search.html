@@ -1,0 +1,14 @@
+<div class="form-group row" >
+    <div class="col-md-2">
+        <select [(ngModel)]="searchFor" class="form-control"  id="searchType">
+            <option value="Name">Naam</option>
+            <option value="Id">Id</option>
+        </select>
+    </div>
+    <div class="col-md-8">
+        <input [formControl]="lookup"  class="form-control form-control-lg" type="text" id="example-search-input">
+    </div>
+    <div class="col-md-2">
+          <button (click)="searchArt()" type="button" class="btn btn-primary btn-with-icon btn-lg"><i class="ion-search"></i>Zoeken</button>
+    </div>
+</div>

@@ -1,0 +1,1 @@
+import * from './dialog-articlecat-select.component';

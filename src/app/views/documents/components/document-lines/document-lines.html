@@ -1,0 +1,26 @@
+<div class="horizontal-scroll">
+	<table class="table table-bordered table-condensed">
+        <thead>
+            <tr>
+                <th>ArtId</th>
+                <th>Beschrijving</th>
+                <th>#</th>
+                <th>K</th>
+                <th>BTW</th>
+                <th>Eenh. Prijs</th>
+                <th>Subtotaal</th>
+            </tr>
+        </thead>
+        <tbody>
+		<tr *ngFor="let line of docLines">
+			<td><span *ngIf="line.ArtId != ''">{{line.ArtId}}</span></td>
+            <td><span>{{line.ArtDescription}}&nbsp;</span></td>
+            <td><span *ngIf="line.ArtId != ''">{{line.Qty}}</span></td>
+            <td><span *ngIf="line.ArtId != ''"><span *ngIf="line.Discount > 0">{{line.Discount}} %</span></span></td>
+            <td><span *ngIf="line.ArtId != ''"><span *ngIf="line.Vat">{{line.Vat.Name}}</span></span></td>
+            <td><span *ngIf="line.ArtId != ''">{{line.UnitPrice | currency:'EUR':true:'1.2-2' }}</span></td>
+            <td><span *ngIf="line.ArtId != ''">{{line.SubTotal | currency:'EUR':true:'1.2-2' }}</span></td>           
+        </tr>
+        </tbody>
+	</table>
+</div>

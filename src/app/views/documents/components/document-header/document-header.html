@@ -1,0 +1,82 @@
+<div class="row" *ngIf=(!!document) >
+	<div class="col-md-6">
+		<div class="horizontal-scroll">
+			<table class="table table-bordered table-condensed">
+				<tr>
+					<td>Id</td>
+					<td>{{document.Id}}</td>
+				</tr>
+				<tr>
+					<td>Type</td>
+					<td>{{document.DocTypeId}}</td>
+				</tr>
+				<tr>
+					<td>Datum</td>
+					<td>{{document.Date01}}</td>
+				</tr>
+				<tr>
+					<td>Vervaldatum</td>
+					<td>{{document.Date02}}</td>
+				</tr>
+				<tr>
+					<td>Referentie</td>
+					<td>{{document.Reference}}</td>
+				</tr>
+				<tr>
+					<td>Commentaar</td>
+					<td>{{document.Comment}}</td>
+				</tr>
+				<tr>
+					<td>Verkoopslocatie</td>
+					<td>{{document.SalesLocationId}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div *ngIf=(!!document.Customer) class="col-md-6">
+		<div class="horizontal-scroll">
+			<table class="table table-bordered table-condensed">
+				<tr>
+					<td>Id</td>
+					<td><button (click)="gotoCust(document.Customer.Id)" type="button" class="btn btn-info btn-icon"><i class="ion-person"></i> {{document.Customer.Id}}</button></td>
+				</tr>
+				<tr>
+					<td>Type</td>
+					<td>{{document.Customer.Type}}</td>
+				</tr>
+				<tr>
+					<td>Naam</td>
+					<td>{{document.Customer.Name}}</td>
+				</tr>
+				<tr>
+					<td>Adres</td>
+					<td>{{document.Customer.Address}}</td>
+				</tr>
+				<tr>
+					<td>Postcode</td>
+					<td>{{document.Customer.PostalCode}}</td>
+				</tr>
+				<tr>
+					<td>Plaats</td>
+					<td>{{document.Customer.City}}</td>
+				</tr>
+				<tr>
+					<td>Tel1</td>
+					<td>{{document.Customer.Tel1}}</td>
+				</tr>
+				<tr>
+					<td>Tel2</td>
+					<td>{{document.Customer.Tel2}}</td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td>{{document.Customer.Email}}</td>
+				</tr>
+				<tr *ngIf="(document.Customer.Type === 'F')">
+					<td>BTW</td>
+					<td>{{document.Customer.VAT}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>

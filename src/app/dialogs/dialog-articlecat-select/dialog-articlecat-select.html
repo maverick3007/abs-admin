@@ -1,0 +1,37 @@
+<div bsModal #catselectModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button class="close" (click)="catselectModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+				<h4 class="modal-title">Selecteer een categorie</h4>
+			</div>
+			<div class="modal-body" style="background: black">
+
+				<div class="row">
+					<ba-card baCardClass="artcatselect-card  with-scroll">
+						<table class="table table-hover">
+							<tbody>
+								<tr *ngFor="let cat of categories" [class.info]="(selectedCategory === cat)" class="no-top-border" (click)="pickCategory(cat)">
+									<td style="width:20px">{{cat.Id}}</td>
+									<td class="align-left">{{cat.Name}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</ba-card>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<div *ngIf="!!selectedCategory">
+					<p>{{selectedCategory.Id}} {{selectedCategory.Name}}</p>
+					<button class="btn btn-primary confirm-btn" (click)="selectCategory()">Selecteer</button>
+					<div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

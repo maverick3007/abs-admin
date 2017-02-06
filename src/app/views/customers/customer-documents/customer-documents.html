@@ -1,0 +1,26 @@
+<div>
+	<div style="margin-bottom:20px">
+		<button [disabled]="!selectedDocument" type="button" class="btn btn-default btn-with-icon" (click)="selectCustomer()"><i class="ion-ios-eye-outline"></i>Bekijk document</button>
+	</div>
+	<div>
+					<div *ngIf="loading">
+				<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+				<span class="sr-only">Loading...</span>
+			</div>
+		<ba-card *ngIf="(documents.length > 0)" class="col-xlg-12 col-xl-12 col-lg-12 col-sm-12 col-xs-12" baCardClass="medium-card  with-scroll">
+
+			<table class="table table-hover">
+				<tbody>
+					<tr *ngFor="let doc of documents" [class.info]="(selectedDocument === doc)" class="no-top-border" (click)="pickDocument(doc)">
+						<td></td>
+						<td class="align-left">{{doc.Id}}</td>
+						<td class="align-right">{{doc.Date01}}</td>
+						<td class="align-right">{{doc.Date02}}</td>
+						<td class="align-right">{{doc.Reference}}</td>
+						<td class="align-right">€ {{doc.Amount}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</ba-card>
+	</div>
+</div>

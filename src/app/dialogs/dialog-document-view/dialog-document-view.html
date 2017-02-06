@@ -1,0 +1,32 @@
+<div bsModal #docviewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button class="close" (click)="docviewModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+				<h4 class="modal-title">Document</h4>
+			</div>
+			<div class="modal-body" style="background: black">
+
+
+				
+			
+				<ba-card class="row" baCardClass="docdetails-card  with-scroll">
+
+				</ba-card>
+		
+
+				<div class="modal-footer">
+					<div *ngIf="!!selectedCustomer">
+						<p>{{selectedCustomer.Id}} {{selectedCustomer.Name}}</p>
+						<button class="btn btn-primary confirm-btn" (click)="selectCustomer()">Selecteer</button>
+						<div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
