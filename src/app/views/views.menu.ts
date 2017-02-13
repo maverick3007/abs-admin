@@ -38,6 +38,36 @@ export const PAGES_MENU = [
                     }
                 }
             },
+            {
+                path: 'tickets',
+                data: {
+                    menu: {
+                        title: 'Tickets',
+                        icon: 'ion-ios-list-outline',
+                        selected: false,
+                        expanded: false,
+                        order: 400
+                    }
+                },
+                children: [
+                    {
+                        path: 'ticketlist',
+                        data: {
+                            menu: {
+                                title: 'Ticket Lijst',
+                            }
+                        }
+                    },
+                    {
+                        path: 'newticket',
+                        data: {
+                            menu: {
+                                title: 'Nieuw Ticket',
+                            }
+                        }
+                    }
+                ]
+            },
             ]
     }
 ];

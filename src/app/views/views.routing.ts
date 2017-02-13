@@ -19,6 +19,7 @@ const routes: Routes = [
             { path: 'customers', loadChildren: () => System.import('./customers/customers.module') },
             { path: 'documents', loadChildren: () => System.import('./documents/documents.module') },
             { path: 'articles', loadChildren: () => System.import('./articles/articles.module') },
+            { path: 'tickets', loadChildren: () => System.import('./tickets/tickets.module') },
         ]
     }
 ];
