@@ -26,6 +26,10 @@ export class DialogCustomerSelect {
                 this.selectedCustomer = null;
                 this.customers = [];
                 this.showDialog();
+                if(value != '')
+                {
+                    this.searchString.setValue(value);
+                }
         });   
 
         this._state.subscribe('popup.error', (error) =>{
