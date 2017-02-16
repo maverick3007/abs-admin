@@ -1,0 +1,69 @@
+<div clas="row">
+	<div class="col-md-4">
+		<div class="form-group">
+			<label for="exampleSelect1">Status</label>
+			<div class="input-group">
+				<select class="form-control" id="exampleSelect1" [(ngModel)]="filter.statusid">
+                <option *ngFor="let status of statuses" [value]="status.Id">{{status.Name}}</option>
+            </select>
+				<span class="input-group-btn"><button type="button" [class.btn-danger]="!filterOnStatus" [class.btn-success]="filterOnStatus" (click)="toggleFilterOnStatus()" class="btn btn-primary padded02 btn-with-icon"><i *ngIf="!filterOnStatus" class="ion-toggle"></i><i *ngIf="filterOnStatus" class="ion-toggle-filled"></i></button></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="exampleSelect2">Prioriteit</label>
+			<div class="input-group">
+				<select class="form-control" id="exampleSelect2" [(ngModel)]="filter.priorid">
+                <option *ngFor="let prior of priorities" [value]="prior.Id">{{prior.Name}}</option>
+            </select>
+				<span class="input-group-btn"><button type="button" [class.btn-danger]="!filterOnPriority" [class.btn-success]="filterOnPriority" (click)="toggleFilterOnPriority()" class="btn padded02 btn-with-icon"><i *ngIf="!filterOnPriority" class="ion-toggle"></i><i *ngIf="filterOnPriority" class="ion-toggle-filled"></i></button></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="exampleSelect2">Toegewezen</label>
+			<div class="input-group">
+				<select class="form-control" id="exampleSelect2" [(ngModel)]="filter.assignedid">
+                <option *ngFor="let user of users" [value]="user.Id">{{user.Name}}</option>
+            </select>
+				<span class="input-group-btn"><button type="button" [class.btn-danger]="!filterOnUser" [class.btn-success]="filterOnUser" (click)="toggleFilterOnUser()" class="btn padded02 btn-with-icon"><i *ngIf="!filterOnUser" class="ion-toggle"></i><i *ngIf="filterOnUser" class="ion-toggle-filled"></i></button></span>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="form-group">
+			<label for="scl">Nummer</label>
+			<div class="input-group">
+				<input type="text" [(ngModel)]="filter.ticketid" class="form-control padded01" id="scl" placeholder="Geen een (deel van) het ticketnummer...">
+				<span class="input-group-btn"><button type="button" [class.btn-danger]="!filterOnId" [class.btn-success]="filterOnId" (click)="toggleFilterOnId()" class="btn padded02 btn-with-icon"><i *ngIf="!filterOnId" class="ion-toggle"></i><i *ngIf="filterOnId" class="ion-toggle-filled"></i></button></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="sct">Titel</label>
+			<div class="input-group">
+				<input type="text" [(ngModel)]="filter.searchString" class="form-control padded01" id="sct" placeholder="Geef enkele trefwoorden...">
+				<span class="input-group-btn"><button type="button" [class.btn-danger]="!filterOnTitle" [class.btn-success]="filterOnTitle" (click)="toggleFilterOnTitle()" class="btn padded02 btn-with-icon"><i *ngIf="!filterOnTitle" class="ion-toggle"></i><i *ngIf="filterOnTitle" class="ion-toggle-filled"></i></button></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="scl">Klant</label>
+			<div class="input-group" *ngIf="!filter.customer">
+				<input type="text" [(ngModel)]="customerSearchString" class="form-control padded01" id="scc" placeholder="Zoek klant...">
+				<span class="input-group-btn"><button type="button" (click)="searchCustomer()"  class="btn btn-primary padded03">Zoek</button></span>
+			</div>
+			<div class="input-group" *ngIf="!!filter.customer">
+			<button  type="button" (click)="clearCustomer()"  class="btn btn-primary padded03"><i  class="ion-close-circled"></i>{{filter.customer.Name}}</button>
+			</div>
+		</div>
+	</div>
+    <div class="col-md-4">
+		<div class="padding-buttons">
+            <button type="button" *ngIf="nonClosedOnly" (click)="toggleNonClosedOnly()" class="btn padded01 btn-with-icon btn-primary"><i class="ion-toggle"></i> Zonder Closed Tickets</button>
+            <button type="button" *ngIf="!nonClosedOnly" (click)="toggleNonClosedOnly()" class="btn padded01 btn-with-icon btn-primary"><i class="ion-toggle-filled"></i> Met Closed Tickets</button>
+		</div>
+    </div>
+	<div class="col-md-4">
+		<div class="padding-buttons">
+		<button  type="button" (click)="filterNow()"  class="btn btn-success padded01"><i  class="ion-funnel"></i> Filter toepassen</button>
+		<button  type="button" (click)="clearFilter()"  class="btn btn-danger padded01"><i  class="ion-close-circled"></i> Filter verwijderen</button>
+		</div>
+	</div>
+</div>

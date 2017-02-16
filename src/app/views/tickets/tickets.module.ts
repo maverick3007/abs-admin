@@ -7,6 +7,9 @@ import {TicketsComponent} from './tickets.component';
 import { NewTicketComponent } from './new-ticket/new-ticket.component';
 import { TicketListComponent } from './ticket-list/ticket-list.component';
 
+import { TicketFilterComponent } from './components/ticket-filter/ticket-filter.component';
+import { TicketTableComponent } from './components/ticket-table/ticket-table.component';
+
 import { routing }       from './tickets.routing';
 
 @NgModule({
@@ -18,7 +21,7 @@ import { routing }       from './tickets.routing';
     routing
   ],
   declarations: [
-    TicketsComponent, NewTicketComponent, TicketListComponent
+    TicketsComponent, NewTicketComponent, TicketListComponent, TicketFilterComponent,TicketTableComponent
   ],
   providers: [
 
