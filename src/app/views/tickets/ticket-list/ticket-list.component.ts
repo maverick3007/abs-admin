@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { FormControl }   from '@angular/forms';
-
+import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { GlobalState } from '../../../global.state';
 import { AuthenticationService } from '../../../services';
 
@@ -16,12 +16,14 @@ import { AuthenticationService } from '../../../services';
 export class TicketListComponent {
 
 
-
-
-    constructor(private _auth: AuthenticationService, private _state:GlobalState) {
+    constructor(private _auth: AuthenticationService, private _state: GlobalState, private _router: Router) {
+        this._state.subscribe('tickettable.selected', (value) => {
+            var test = value;
+            this._router.navigate(['/views/tickets/ticketdetails' ,value.Id]);
+        })
 
     }
-    
+
 
 
 }

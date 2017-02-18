@@ -3,7 +3,8 @@ import { FormControl }   from '@angular/forms';
 
 import { GlobalState } from '../../../../global.state';
 import { AuthenticationService } from '../../../../services';
-
+import { ConstantsService } from '../../../../services';
+import { InitService } from '../../../../services';
 
 
 @Component({
@@ -40,19 +41,20 @@ export class TicketFilterComponent {
         baCheckboxClass: 'class'
     };
 
-    constructor(private _auth: AuthenticationService, private _state:GlobalState) {
+    constructor(private _auth: AuthenticationService, private _state:GlobalState, private _store: ConstantsService, private _init: InitService) {
         this.statuses = [];
         this.priorities = [];
-        this.filterOnPriority = false;
+        this.filter = _store.TicketFilter;
+        /*this.filterOnPriority = false;
         this.filterOnStatus = false;
         this.filterOnUser = false;
         this.filterOnId = false;
         this.filterOnTitle = false;
         this.nonClosedOnly = true;
-        this.filter = new TicketFilter;
-        this._auth.apiGet('taskticket/statuses').subscribe(vals => this.extractStatuses(vals));
-        this._auth.apiGet('taskticket/priorities').subscribe(vals => this.extractPriorities(vals));
-        this._auth.apiGet('taskticket/users').subscribe(vals => this.extractUsers(vals));
+        this.filter = new TicketFilter;*/
+        this.priorities = _init.taskTicketpriorities;
+        this.statuses = _init.taskTicketStatuses;
+        this.users = _init.taskTicketusers;
         this.customerSearchString = '';
         this._state.subscribe('customer.details', (value) => {
             this.filter.customer = value;
@@ -70,64 +72,52 @@ export class TicketFilterComponent {
     }
 
     toggleNonClosedOnly(){
-        this.nonClosedOnly = !this.nonClosedOnly;
+        this.filter.nonClosedOnly = !this.filter.nonClosedOnly;
     }
 
     toggleFilterOnStatus(){
-        this.filterOnStatus = !this.filterOnStatus;
+        this.filter.filterOnStatus = !this.filter.filterOnStatus;
     }
 
     toggleFilterOnPriority(){
-        this.filterOnPriority = !this.filterOnPriority;
+        this.filter.filterOnPriority = !this.filter.filterOnPriority;
     }
 
     toggleFilterOnUser(){
-        this.filterOnUser = !this.filterOnUser;
+        this.filter.filterOnUser = !this.filter.filterOnUser;
     }
 
     toggleFilterOnId(){
-        this.filterOnId = !this.filterOnId;
+        this.filter.filterOnId = !this.filter.filterOnId;
     }
 
     toggleFilterOnTitle(){
-        this.filterOnTitle = !this.filterOnTitle;
+        this.filter.filterOnTitle = !this.filter.filterOnTitle;
     }
 
-    extractStatuses(vals) {
-        this.statuses = vals;
-        this.filter.statusid = vals[0].Id;
-    }
 
-    extractPriorities(vals) {
-        this.priorities = vals;
-        this.filter.priorid = vals[0].Id;
-    }
-
-    extractUsers(vals) {
-        this.users = vals;
-        this.filter.assignedid = vals[0].Id;
-    }
 
     clearFilter(){
-        this.filterOnPriority = false;
-        this.filterOnStatus = false;
-        this.filterOnUser = false;
-        this.filterOnId = false;
-        this.filterOnTitle = false;
-        this.nonClosedOnly = true;
+        this.filter.filterOnPriority = false;
+        this.filter.filterOnStatus = false;
+        this.filter.filterOnUser = false;
+        this.filter.filterOnId = false;
+        this.filter.filterOnTitle = false;
+        this.filter.nonClosedOnly = true;
         this.clearCustomer();
         this.filterNow();
     }
 
     filterNow(){
+        this._store.TicketFilter = this.filter;
         var filterString = '';
-        if(this.filterOnStatus){filterString = filterString + "&statusids=" + this.filter.statusid ;}
-        if(this.filterOnPriority){filterString = filterString + "&priorids=" + this.filter.priorid;}
-        if(this.filterOnUser){filterString = filterString + "&assignid=" + this.filter.assignedid;}
-        if(this.filterOnTitle){filterString = filterString + "&keywrds=" + this.filter.searchString;}
-        if(this.filterOnId){filterString = filterString + "&tickid=" + this.filter.ticketid;}
+        if(this.filter.filterOnStatus){filterString = filterString + "&statusids=" + this.filter.statusid ;}
+        if(this.filter.filterOnPriority){filterString = filterString + "&priorids=" + this.filter.priorid;}
+        if(this.filter.filterOnUser){filterString = filterString + "&assignid=" + this.filter.assignedid;}
+        if(this.filter.filterOnTitle){filterString = filterString + "&keywrds=" + this.filter.searchString;}
+        if(this.filter.filterOnId){filterString = filterString + "&tickid=" + this.filter.ticketid;}
         if(this.filter.customer != null){filterString = filterString + "&custid=" + this.filter.customer['Id'] ;}
-        if(!this.nonClosedOnly){filterString = filterString + "&incclosed=Y";}
+        if(!this.filter.nonClosedOnly){filterString = filterString + "&incclosed=Y";}
 
         this._state.notify('ticketfilter.filtersent', filterString);
     }
@@ -137,6 +127,12 @@ export class TicketFilterComponent {
 
 
 class TicketFilter {
+    filterOnPriority: boolean;
+    filterOnStatus: boolean;
+    filterOnUser: boolean;
+    filterOnId: boolean;
+    filterOnTitle: boolean;
+    nonClosedOnly: boolean;
     customer: Object;
     searchString: string;
     priorid: string;

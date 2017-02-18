@@ -18,10 +18,7 @@ export class TicketTableComponent implements OnInit{
     loading:boolean;
 
     constructor(private _auth: AuthenticationService, private _state:GlobalState ) {
-        this.filterString = '';
-        this.tickets = [];
-        this.hasMoreEntries = false;
-        this.loading = false;
+
         this._state.subscribe('ticketfilter.filtersent', (value) =>{
             this.filterString = value;
             this.page = 0;
@@ -31,8 +28,12 @@ export class TicketTableComponent implements OnInit{
     }
 
     ngOnInit(){
-        this.page=0;
-        this.getTickets();
+        this.page = 0;
+        this.filterString = '';
+        this.tickets = [];
+        this.hasMoreEntries = false;
+        this.loading = false;
+         this.getTickets();
     }
 
     getTickets(){
@@ -48,6 +49,10 @@ export class TicketTableComponent implements OnInit{
         for (var i = 0; i < ticks.Results.length; i++) {
             this.tickets.push(ticks.Results[i]);
         }
+    }
+
+    selectTicket(val){
+        this._state.notify('tickettable.selected', val)
     }
 
 }

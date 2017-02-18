@@ -33,7 +33,7 @@ export class App {
               private viewContainerRef: ViewContainerRef,
               private _init: InitService) {
                 
-    this._init.initialize();
+    //this._init.initialize();
 
     this._fixModals();
 
@@ -54,6 +54,10 @@ export class App {
   private _loadImages(): void {
     // register some loaders
     BaThemePreloader.registerLoader(this._imageLoader.load(layoutPaths.images.root + 'sky-bg.jpg'));
+  }
+
+  private _loadIniValues(): void{
+    BaThemePreloader.registerLoader(this._init.initialize());
   }
 
   private _fixModals(): void {
