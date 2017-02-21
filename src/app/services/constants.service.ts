@@ -10,16 +10,17 @@ export class ConstantsService {
   DocumentTypes: Array<Object> = []; 
   TicketFilter: TicketFilter = new TicketFilter;
 
-  constructor() { 
+  constructor() {
+      //Standard TicketFilter 
       this.TicketFilter.filterOnPriority = false;
       this.TicketFilter.filterOnStatus = false;
       this.TicketFilter.filterOnUser = false;
       this.TicketFilter.filterOnId = false;
       this.TicketFilter.filterOnTitle = false;
       this.TicketFilter.nonClosedOnly = true;
-      /*this.TicketFilter.assignedid = "10" ;   
+      this.TicketFilter.assignedid = "10" ;   
       this.TicketFilter.priorid = "10" ;   
-      this.TicketFilter.statusid = "10" ;     */
+      this.TicketFilter.statusid = "10" ;     
   }
 
 }

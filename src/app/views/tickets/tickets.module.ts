@@ -2,6 +2,7 @@ import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgaModule } from '../../theme/nga.module';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 import {TicketsComponent} from './tickets.component';
 import { NewTicketComponent } from './new-ticket/new-ticket.component';
@@ -18,6 +19,7 @@ import { routing }       from './tickets.routing';
     FormsModule,
     ReactiveFormsModule,
     NgaModule,
+    CKEditorModule,
     routing
   ],
   declarations: [

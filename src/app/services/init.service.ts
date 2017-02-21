@@ -28,6 +28,7 @@ export class InitService {
       this.taskTicketpriorities = this.init['TaskTicketPriorities'];
       this.taskTicketStatuses = this.init['TaskTicketStatuses'];
       this.taskTicketusers = this.init['TaskTicketUsers'];
+      resolve('Init values loaded successfully.');
     });
     })
   }

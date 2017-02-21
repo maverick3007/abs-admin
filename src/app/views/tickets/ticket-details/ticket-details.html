@@ -1,15 +1,89 @@
-<div>
-    <button  type="button" (click)="navBack()"  class="btn btn-primary "><i  class="ion-back"></i> Terug</button>
-</div>
 <div *ngIf="!!ticket">
-	<h3>{{ticket.Id}} : {{ticket.Title}}</h3>
-	<div>
-		<p [innerHTML]="ticket.Description"></p>
+	<h3> <button type="button" (click)="navBack()" class="btn btn-primary "><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Terug</button> {{ticket.Id}}
+		: {{ticket.Title}}</h3>
+	<div class="row" class="formrow">
+		<form class="form-inline">
+			<div class="form-group">
+				<label>Klant:</label>
+				<button type="button" (click)="navToCustomer()" class="btn btn-primary "><i class="fa fa-user" aria-hidden="true"></i> {{ticket.Customer.Name}}</button>
+			</div>
+		</form>
 	</div>
-	<div class="row" *ngFor="let event of events">
-		<div class="col-md-1">{{event.EventDate | date:"dd/MM/yy"}}</div>
-		<div class="col-md-5">
-			<p  [innerHTML]="event.Description"></p>
+	<div class="row" >
+		<ba-card baCardClass="with-scroll" *ngIf="!editingDescription">
+			<p [innerHTML]="ticket.Description"></p>
+			<div class="row" class="formrow">
+				<button type="button" *ngIf="(!editing)" (click)="toggleEditingDescription()" class="btn btn-primary pull-right"><i class="fa fa-file-text" aria-hidden="true"></i> Beschrijving aanpassen</button>
+			</div>
+		</ba-card>
+		<div *ngIf="editingDescription">
+			<ckeditor [(ngModel)]="EditDescription" [config]="config"></ckeditor>
+			<button type="button" [disabled]="EditDescription==ticket.Description" (click)="setDescription()" class="btn btn-primary pull-right confbutton"><i class="fa fa-floppy-o" aria-hidden="true"></i> Opslaan</button>
+			<button type="button" (click)="toggleEditingDescription()" class="btn btn-danger pull-right confbutton">Annuleren</button>
 		</div>
 	</div>
+
+
+	<div class="row" *ngIf="(!editing)" class="formrow">
+		<div class="form-group col-md-4">
+			<label for="pr">Prioriteit</label>
+			<div class="input-group">
+				<select class="form-control" id="pr" [(ngModel)]="editPriorityId">
+                <option *ngFor="let priority of priorities" [value]="priority.Id">{{priority.Name}}</option>
+            </select>
+				<span class="input-group-btn"><button type="button" [disabled]="ticket.PriorityId == editPriorityId" (click)="setPriority()" class="btn padded02 btn-with-icon"><i class="fa fa-floppy-o" aria-hidden="true"></i></button></span>
+			</div>
+		</div>
+
+		<div class="form-group col-md-4">
+			<label for="st">Status</label>
+			<div class="input-group">
+				<select class="form-control" id="st" [(ngModel)]="editStatusId">
+                <option *ngFor="let status of statuses" [value]="status.Id">{{status.Name}}</option>
+            </select>
+				<span class="input-group-btn"><button type="button" [disabled]="ticket.StatusId == editStatusId" (click)="setStatus()" class="btn padded02 btn-with-icon"><i class="fa fa-floppy-o" aria-hidden="true"></i></button></span>
+			</div>
+		</div>
+
+		<div class="form-group col-md-4">
+			<label for="exampleSelect2">Toegewezen</label>
+			<div class="input-group">
+				<select class="form-control" id="exampleSelect2" [(ngModel)]="editAssignedToId">
+                <option *ngFor="let user of users" [value]="user.Id">{{user.Name}}</option>
+            </select>
+				<span class="input-group-btn"><button type="button" [disabled]="ticket.AssignedToId == editAssignedToId" (click)="setAssignedTo()" class="btn padded02 btn-with-icon"><i class="fa fa-floppy-o" aria-hidden="true"></i></button></span>
+			</div>
+		</div>
+	</div>
+	<div class="row" class="formrow">
+		<button type="button" *ngIf="(!editing)" (click)="toggleAddingWork()" class="btn btn-primary "><i class="fa fa-clock-o" aria-hidden="true"></i> Werk registreren</button>
+		<div *ngIf="addingWork">
+		<label>Werk registreren:</label>		
+		<input type="text" class="form-control" id="inlineFormInput" placeholder="beschrijving werk..." [(ngModel)]="newWork.Title">
+			<div class="form-inline" style="margin-top:10px"  >
+				<label>Eenheden:</label>
+					<input type="number" class="form-control" id="inlineFormInput2" [(ngModel)]="newWork.WorkUnits">
+					<button type="button" (click)="addWork()" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Opslaan</button>
+					<button type="button"  (click)="toggleAddingWork()" class="btn btn-danger ">Annuleren</button>
+			</div>
+		</div>
+	</div>
+	<div class="row" class="formrow">
+		<button type="button" *ngIf="(!editing)" (click)="toggleAddingComment()" class="btn btn-primary "><i class="fa fa-plus" aria-hidden="true"></i> Commentaar toevoegen</button>
+		<div *ngIf="addingComment">
+		<label>Commentaar</label>
+		<ckeditor [(ngModel)]="newComment"  [config]="config"></ckeditor>
+			<button type="button" (click)="addComment()" class="btn btn-primary pull-right confbutton"><i class="fa fa-floppy-o" aria-hidden="true"></i> Opslaan</button>
+			<button type="button"  (click)="toggleAddingComment()" class="btn btn-danger pull-right confbutton">Annuleren</button>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<table class="table table-bordered">
+		<tr *ngFor="let event of events">
+			<td class="align-left">{{event.EventDate | date:"dd/MM/yy"}}</td>
+			<td class="align-left" [innerHTML]="event.Description">
+			</td>
+		</tr>
+	</table>
 </div>

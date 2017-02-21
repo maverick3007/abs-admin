@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { FormControl }   from '@angular/forms';
 
 import { GlobalState } from '../../../../global.state';
@@ -14,7 +14,7 @@ import { InitService } from '../../../../services';
     template: require('./ticket-filter.html')
 })
 
-export class TicketFilterComponent {
+export class TicketFilterComponent implements AfterViewInit {
     priorities: Array<Object>;
     statuses: Array<Object>;
     users: Array<Object>;
@@ -41,26 +41,22 @@ export class TicketFilterComponent {
         baCheckboxClass: 'class'
     };
 
-    constructor(private _auth: AuthenticationService, private _state:GlobalState, private _store: ConstantsService, private _init: InitService) {
+    constructor(private _auth: AuthenticationService, private _state:GlobalState, private _store: ConstantsService, private _init: InitService)  {
         this.statuses = [];
-        this.priorities = [];
-        this.filter = _store.TicketFilter;
-        /*this.filterOnPriority = false;
-        this.filterOnStatus = false;
-        this.filterOnUser = false;
-        this.filterOnId = false;
-        this.filterOnTitle = false;
-        this.nonClosedOnly = true;
-        this.filter = new TicketFilter;*/
-        this.priorities = _init.taskTicketpriorities;
-        this.statuses = _init.taskTicketStatuses;
-        this.users = _init.taskTicketusers;
+        this.priorities = [];      
         this.customerSearchString = '';
         this._state.subscribe('customer.details', (value) => {
             this.filter.customer = value;
         });
     }
-    
+
+
+    ngAfterViewInit(){
+        this.filter = this._store.TicketFilter;
+        this.priorities = this._init.taskTicketpriorities;
+        this.statuses = this._init.taskTicketStatuses;
+        this.users = this._init.taskTicketusers;
+    }
 
     clearCustomer(){
         this.filter.customer = null;

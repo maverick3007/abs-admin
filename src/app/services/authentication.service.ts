@@ -80,6 +80,24 @@ export class AuthenticationService {
             });
     }
 
+        apiPostText(apistring: string, postOb: Object) {
+        let authToken = localStorage.getItem('auth_token');
+        let self = this;
+        let headers = new Headers({ 'Content-Type': 'Content-type: html/text' });
+        headers.append('Authorization', `Bearer ${authToken}`);
+
+        return this._http.post(this._const.root_url + 'api/' + apistring, JSON.stringify(postOb), { headers: headers })
+            .map(this.extractData)
+            .catch(err => {
+                if (err.status == 401) {
+                    this.logout();
+                    return Observable.arguments;
+                } else {
+                    this.handleError(err, self);
+                }
+            });
+    }
+
     getUser() {
         let authToken = localStorage.getItem('auth_token');
         let self = this;
