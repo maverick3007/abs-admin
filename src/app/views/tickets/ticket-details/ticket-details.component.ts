@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, AfterViewChecked } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../../../services';
 import { GlobalState } from '../../../global.state';
 import { Location } from '@angular/common';
@@ -29,7 +29,7 @@ export class TicketDetailsComponent implements AfterViewChecked {
     priorities: Array<Object>;
     statuses: Array<Object>;
     users: Array<Object>;
-    constructor(private route: ActivatedRoute, private _location: Location, private auth: AuthenticationService, private _state: GlobalState, private _init: InitService) {
+    constructor(private route: ActivatedRoute, private _router: Router, private auth: AuthenticationService, private _state: GlobalState, private _init: InitService) {
         this.route.params
             .map(params => params['id'])
             .switchMap(id => this.auth.apiGet('taskticket/' + id))
@@ -147,7 +147,7 @@ export class TicketDetailsComponent implements AfterViewChecked {
     }
 
     navBack() {
-        this._location.back();
+        this._router.navigate(['/views/tickets/ticketlist']);
     }
 
 

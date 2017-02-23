@@ -59,6 +59,11 @@ export class DialogCustomerSelect {
     public showDialog(): void {
         this.Modal.show();
     }
+
+    public closeWithoutSelection(){
+        this.Modal.hide();
+        this._state.notify('customer.noneselected', 'none');
+    }
 }
 
 class filter {

@@ -1,0 +1,22 @@
+<div class="row">
+	<table class="table table-hover">
+		<tbody>
+			<tr *ngFor="let ticket of tickets" (click)='selectTicket(ticket)' class="no-top-border" >
+				<td></td>
+				<td class="align-left">{{ticket.Id}}</td>
+				<td class="align-right">{{ticket.Title}}</td>
+				<td class="align-right">{{ticket.CreatedDate | date:"dd/MM/yy" }}</td>
+				<td class="align-right">{{ticket.AssignedTo.Name}}</td>
+				<td class="align-right">{{ticket.Priority.Name}}</td>
+				<td class="align-right">{{ticket.Status.Name}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<div *ngIf="loading">
+		<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+		<span class="sr-only">Loading...</span>
+	</div>
+	<div *ngIf="!loading" style="margin-top=10px">
+		<button (click)="getTickets()" *ngIf="hasMoreEntries" type="button" class="btn btn-default btn-with-icon"><i class="ion-search"></i>Meer laden</button>
+	</div>
+</div>

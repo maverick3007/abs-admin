@@ -4,11 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgaModule } from '../../theme/nga.module';
 
 import { CustomersComponent } from './customers.component';
-import { CustomerSearchComponent} from './customer-search/customer-search.component';
 import { CustomerDetailsComponent} from './customer-details/customer-details.component';
-import { CustomerIdentityComponent} from './customer-identity/customer-identity.component';
-import { CustomerDocumentsComponent} from './customer-documents/customer-documents.component';
-import { CustomerDocumentCountersComponent} from './customer-document-counters/customer-document-counters.component';
+import { CustomerIdentityComponent} from './components/customer-identity/customer-identity.component';
+import { CustomerDocumentCountersComponent} from './components/customer-document-counters/customer-document-counters.component';
+import { CustomerTicketsComponent } from './components/customer-tickets/customer-tickets.component';
 import { routing }       from './customers.routing';
 
 
@@ -24,10 +23,9 @@ import { routing }       from './customers.routing';
   declarations: [
     CustomersComponent,
     CustomerDetailsComponent,
-    CustomerSearchComponent,
     CustomerIdentityComponent,
-    CustomerDocumentsComponent,
-    CustomerDocumentCountersComponent
+    CustomerDocumentCountersComponent,
+    CustomerTicketsComponent
   ],
   providers: [
 

@@ -38,7 +38,7 @@ export class App {
     this._fixModals();
 
     this._loadImages();
-    this._loadIniValues();
+    //this._loadIniValues();
 
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;

@@ -1,9 +1,9 @@
 import { Component, ViewEncapsulation, Input, OnChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../../../services';
+import { AuthenticationService } from '../../../../services';
 
-import {GlobalState} from '../../../global.state';
+import {GlobalState} from '../../../../global.state';
 
 @Component({
     selector: 'customer-document-counters',
@@ -28,7 +28,7 @@ export class CustomerDocumentCountersComponent implements OnChanges{
     ngOnChanges() {
         if (!!this.customer) {
          this.loading = false;
-        let Id = this.customer['Id'];
+        let Id = this.customer['Id']; 
         this.getCustomerDocumentCounters(Id);
         }
 

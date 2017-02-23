@@ -141,7 +141,6 @@ export class AuthenticationService {
         return body;
     }
 
-
     logout() {
         localStorage.removeItem('auth_token');
         this.loggedIn = false;

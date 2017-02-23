@@ -1,8 +1,8 @@
 import { Component, ViewEncapsulation, Input, OnChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { AuthenticationService } from '../../../services';
-import { MessageService } from '../../../services';
+import { AuthenticationService } from '../../../../services';
+import { MessageService } from '../../../../services';
 import { Subscription } from 'rxjs/Subscription' ;
 
 @Component({
@@ -33,4 +33,4 @@ export class CustomerIdentityComponent implements OnChanges {
     }
 
 
-}
+} 

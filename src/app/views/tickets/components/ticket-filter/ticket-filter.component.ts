@@ -45,6 +45,7 @@ export class TicketFilterComponent implements AfterViewInit {
         this.statuses = [];
         this.priorities = [];      
         this.customerSearchString = '';
+        this.clearCustomer();
         this._state.subscribe('customer.details', (value) => {
             this.filter.customer = value;
         });

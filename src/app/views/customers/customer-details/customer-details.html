@@ -1,8 +1,19 @@
-<ba-card  class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-xs-12" title="Details" baCardClass="custdetail-card  with-scroll">
-    <customer-identity [customer]="customer"></customer-identity>
-    
+<div class="widgets">
+	<div class="col-md-6">
+		<ba-card title="Details" baCardClass=" with-scroll">
+			<customer-identity [customer]="customer"></customer-identity>
+		</ba-card>
+	</div>
+	<div class="col-md-6">
+		<ba-card title="Documenten" baCardClass=" with-scroll">
+			<customer-document-counters [customer]="customer"></customer-document-counters>
+		</ba-card>
 
-</ba-card>
-<ba-card  class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-xs-12" title="Documenten" baCardClass="custdetail-card  with-scroll">
-    <customer-document-counters [customer]="customer"></customer-document-counters>
-</ba-card>
+	</div>
+	<div class="col-md-12">
+		<ba-card title="Tickets" baCardClass=" with-scroll">
+			<customer-tickets [customer]="customer"></customer-tickets>
+		</ba-card>
+	</div>
+
+</div>
