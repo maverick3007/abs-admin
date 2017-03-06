@@ -22,6 +22,11 @@ export class CustomersComponent implements OnInit {
     
   }
 
+  ngOnDestroy(){
+    this._state.unsublast('customer.details');
+  }
+
+
   search(){
     this._state.notify('popup.customerselect', '');
   }

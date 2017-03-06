@@ -20,7 +20,8 @@ export class CustomerDetailsComponent  {
         .subscribe(customer => this.customer = customer);
     }
 
-    
+
+
 
 
 

@@ -41,6 +41,12 @@ export class GlobalState {
     this._subscriptions.set(event, subscribers);
   }
 
+  unsublast(event: string){
+    let subscribers = this._subscriptions.get(event) || [];
+    subscribers.pop();
+  }
+
+ 
   _onEvent(data: any) {
     let subscribers = this._subscriptions.get(data['event']) || [];
 
