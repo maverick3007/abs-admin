@@ -39,6 +39,28 @@ export const PAGES_MENU = [
                 }
             },
             {
+                path: 'workagreements',
+                data: {
+                    menu: {
+                        title: 'Werkdocumenten',
+                        icon: 'ion-briefcase',
+                        selected: false,
+                        expanded: false,
+                        order: 350
+                    }
+                },
+                children: [
+                    {
+                        path: 'newwa',
+                        data: {
+                            menu: {
+                                title: 'Nieuw Werkdocument',
+                            }
+                        }
+                    }
+                ]
+            },
+            {
                 path: 'tickets',
                 data: {
                     menu: {

@@ -20,6 +20,7 @@ const routes: Routes = [
             { path: 'documents', loadChildren: () => System.import('./documents/documents.module') },
             { path: 'articles', loadChildren: () => System.import('./articles/articles.module') },
             { path: 'tickets', loadChildren: () => System.import('./tickets/tickets.module') },
+             { path: 'workagreements', loadChildren: () => System.import('./work-agreements/work-agreements.module') },
         ]
     }
 ];

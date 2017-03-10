@@ -14,6 +14,7 @@ export class InitService {
   taskTicketpriorities: Array<Object> = [];;
   taskTicketusers: Array<Object> = [];;
   activeYears: Array<Number> = [];
+  waTypes: Array<Object> = [];
   constructor(private _http: Http, private _const: ConstantsService) {
 
   }
@@ -33,6 +34,7 @@ export class InitService {
       this.taskTicketpriorities = value['TaskTicketPriorities'];
       this.taskTicketStatuses = value['TaskTicketStatuses'];
       this.taskTicketusers = value['TaskTicketUsers'];
+      this.waTypes = value['WaTypes']
       resolve('Init values loaded successfully.');
     });
     })

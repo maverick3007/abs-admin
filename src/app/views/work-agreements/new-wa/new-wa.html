@@ -1,0 +1,59 @@
+<div *ngIf="!!wa.Customer">
+	<div class="row formrow" style="margin-bottom:20px">
+		<form class="form-inline">
+			<div class="form-group col-md-12">
+				<label>Klant:</label>
+				<button type="button" (click)="selectOtherCustomer()" class="btn btn-primary "><i class="fa fa-user" aria-hidden="true"></i> {{wa.Customer.Name}}</button>
+			</div>
+		</form>
+	</div>
+	<div class="row formrow">
+		<div class="form-group col-md-8">
+			<div class="form-group">
+				<label for="title">Naam Werkdocument</label>
+				<input type="text" class="form-control" id="title" placeholder="Titel voor ticket..." [(ngModel)]="wa.Name">
+			</div>
+		</div>
+		<div class="form-group col-md-4">
+			<label for="exampleSelect2">Type</label>
+			<div class="input-group">
+				<select class="form-control" id="exampleSelect2" [(ngModel)]="wa.WorkAgreementTypeId">
+                <option *ngFor="let type of waTypes" [value]="type.Id">{{type.Name}}</option>
+            </select>
+
+			</div>
+		</div>
+	</div>
+    <div class="row formrow">
+		<div class="col-md-12">
+			<ckeditor [(ngModel)]="wa.Scope" [config]="config"></ckeditor>
+		</div>
+	</div>
+	<div class="row formrow">
+		<div class="form-group col-md-4">
+			<label for="title">Startdatum</label>
+			<input type="date" class="form-control" id="startdate">
+		</div>
+		<div class="form-group col-md-4">
+			<label for="title">Einddatum</label>
+			<input type="date" class="form-control" id="enddate">
+		</div>
+		<div class="form-group col-md-4">
+			<label for="title">Kostprijs</label>
+			<div class="input-group ">
+				<input type="number" class="form-control with-warning-addon" aria-describedby="basic-addon2">
+				<span class="input-group-addon input-group-addon-warning addon-right" id="basic-addon2">€</span>
+			</div>
+		</div>
+	</div>
+	<div class="row formrow">
+		<div class="form-group col-md-4">
+			<label for="title">Inbegrepen Werkeenheden</label>
+			<input type="number" class="form-control" id="inclwu">
+		</div>
+		<div class="form-group col-md-4">
+			<label for="title">Maandelijkse Werkeenheden</label>
+			<input type="number" class="form-control" id="monthwu">
+		</div>
+	</div>
+</div>
