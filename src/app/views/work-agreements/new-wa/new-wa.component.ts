@@ -1,9 +1,11 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GlobalState } from '../../../global.state';
 import { AuthenticationService } from '../../../services';
 import { InitService } from '../../../services';
+import { ValidationService } from '../../../services';
 import '../../../components/rich-editor/rich-editor.loader.ts';
 
 @Component({
@@ -16,7 +18,8 @@ import '../../../components/rich-editor/rich-editor.loader.ts';
 export class NewWaComponent{
     wa: WorkAgreement = new WorkAgreement;
     waTypes: Array<Object>;
-    constructor(private route: ActivatedRoute, private _router: Router, private _location: Location, private auth: AuthenticationService, private _state: GlobalState, private _init: InitService){
+    waForm:FormGroup;
+    constructor(@Inject(FormBuilder) fb: FormBuilder, private route: ActivatedRoute, private _router: Router, private _location: Location, private auth: AuthenticationService, private _state: GlobalState, private _init: InitService){
         this.route.params    
             .map(params => params['id'])
             .switchMap(id => this.auth.apiGet('customer/' + id))
@@ -30,15 +33,54 @@ export class NewWaComponent{
             this.waTypes = this._init.waTypes;
             this._state.subscribe('customer.details', (value) => {
             this.wa.Customer = value;
+            this.wa.SuspendOnZeroWorkUnits = false;
+            this.wa.PricePerWorkUnit = 0;
+            
+            this.waForm = fb.group({
+                 Name:['', [Validators.required]],
+                 WorkAgreementTypeId:['',Validators.required],
+                 Scope:['Scope description'],
+                 StartDate:['', ValidationService.stringIsDateValidator],
+                 EndDate:['', ValidationService.stringIsDateValidator],
+                 SalesPrice:[0, ValidationService.stringIsNumeric],
+                 NrOfWorkUnitsOnStart: [0, ValidationService.stringIsInteger],
+                 NrOfMonthlWorkyUnits: [0, ValidationService.stringIsInteger],
+                 PricePerWorkUnit: [0, ValidationService.stringIsNumeric]
+            });
         });
     }
 
     selectOtherCustomer(){
         this._state.notify('popup.customerselect', '');
     }
+
+
+    toggleSuspendOnZero(){
+         this.wa.SuspendOnZeroWorkUnits = !this.wa.SuspendOnZeroWorkUnits;
+         if( this.wa.SuspendOnZeroWorkUnits){
+              this.waForm.controls['PricePerWorkUnit'].setValue(0);
+              this.waForm.controls['PricePerWorkUnit'].disable();
+         }else{
+              this.waForm.controls['PricePerWorkUnit'].enable();
+         }
+    }
+
+    createAgreement(){
+        this.auth.apiPost('workagreement', this.wa).subscribe(newWa =>{
+            alert(newWa['Id']);
+        });
+    }
 }
 
 class WorkAgreement{
     Customer:Object;
     WorkAgreementTypeId:string;
+    SuspendOnZeroWorkUnits: boolean;
+    PricePerWorkUnit: number;
+    Name: string;
+    StartDate: Date;
+    EndDate:Date;
+    DalesPrice:Number;
+    NrOfWorkUnitsOnStart: number;
+    NrOfMonthlWorkyUnits: number;
 }

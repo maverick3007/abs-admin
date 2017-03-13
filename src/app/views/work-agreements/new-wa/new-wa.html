@@ -7,53 +7,67 @@
 			</div>
 		</form>
 	</div>
-	<div class="row formrow">
-		<div class="form-group col-md-8">
-			<div class="form-group">
-				<label for="title">Naam Werkdocument</label>
-				<input type="text" class="form-control" id="title" placeholder="Titel voor ticket..." [(ngModel)]="wa.Name">
+	<form [formGroup]="waForm" (submit)="createAgreement()">
+		<div class="row formrow">
+			<div class="form-group col-md-8" >
+				<div class="form-group" [class.has-error]="!waForm.controls['Name'].valid">
+					<label for="Name">Naam Werkdocument</label>
+					<input type="text" class="form-control" id="Name" placeholder="Titel voor ticket..." formControlName="Name">
+				</div>
 			</div>
-		</div>
-		<div class="form-group col-md-4">
-			<label for="exampleSelect2">Type</label>
-			<div class="input-group">
-				<select class="form-control" id="exampleSelect2" [(ngModel)]="wa.WorkAgreementTypeId">
+			<div class="form-group col-md-4">
+				<label for="WorkAgreementTypeId">Type</label>
+				<div class="input-group" [class.has-error]="!waForm.controls['WorkAgreementTypeId'].valid">
+					<select class="form-control" id="WorkAgreementTypeId" formControlName="WorkAgreementTypeId">
                 <option *ngFor="let type of waTypes" [value]="type.Id">{{type.Name}}</option>
             </select>
 
+				</div>
 			</div>
 		</div>
-	</div>
-    <div class="row formrow">
-		<div class="col-md-12">
-			<ckeditor [(ngModel)]="wa.Scope" [config]="config"></ckeditor>
-		</div>
-	</div>
-	<div class="row formrow">
-		<div class="form-group col-md-4">
-			<label for="title">Startdatum</label>
-			<input type="date" class="form-control" id="startdate">
-		</div>
-		<div class="form-group col-md-4">
-			<label for="title">Einddatum</label>
-			<input type="date" class="form-control" id="enddate">
-		</div>
-		<div class="form-group col-md-4">
-			<label for="title">Kostprijs</label>
-			<div class="input-group ">
-				<input type="number" class="form-control with-warning-addon" aria-describedby="basic-addon2">
-				<span class="input-group-addon input-group-addon-warning addon-right" id="basic-addon2">€</span>
+		<div class="row formrow">
+			<div class="col-md-12">
+				<ckeditor formControlName="Scope"></ckeditor>
 			</div>
 		</div>
-	</div>
-	<div class="row formrow">
-		<div class="form-group col-md-4">
-			<label for="title">Inbegrepen Werkeenheden</label>
-			<input type="number" class="form-control" id="inclwu">
+		<div class="row formrow">
+			<div class="form-group col-md-4"  [class.has-error]="!waForm.controls['StartDate'].valid">
+				<label for="StartDate">Startdate</label>
+				<input type="date" formControlName="StartDate" class="form-control" id="StartDate">
+			</div>
+			<div class="form-group col-md-4"  [class.has-error]="!waForm.controls['EndDate'].valid">
+				<label for="EndDate">Einddatum</label>
+				<input type="date" formControlName="EndDate" class="form-control" id="EndDate">
+			</div>
+			<div class="form-group col-md-4" [class.has-error]="!waForm.controls['SalesPrice'].valid">
+				<label for="SalesPrice">Kostprijs</label>
+				<div class="input-group ">
+					<input type="number" formControlName="SalesPrice" id="SalesPrice" class="form-control with-warning-addon" aria-describedby="basic-addon2">
+					<span class="input-group-addon input-group-addon-warning addon-right" id="basic-addon2">€</span>
+				</div>
+			</div>
 		</div>
-		<div class="form-group col-md-4">
-			<label for="title">Maandelijkse Werkeenheden</label>
-			<input type="number" class="form-control" id="monthwu">
+		<div class="row formrow">
+			<div class="form-group col-md-4" [class.has-error]="!waForm.controls['NrOfWorkUnitsOnStart'].valid">
+				<label for="NrOfWorkUnitsOnStart">Inbegrepen Werkeenheden</label>
+				<input type="number" formControlName="NrOfWorkUnitsOnStart" class="form-control" id="NrOfWorkUnitsOnStart">
+			</div>
+			<div class="form-group col-md-4"  [class.has-error]="!waForm.controls['NrOfMonthlWorkyUnits'].valid">
+				<label for="NrOfMonthlWorkyUnits">Maandelijkse Werkeenheden</label>
+				<input type="number" formControlName="NrOfMonthlWorkyUnits" class="form-control" id="NrOfMonthlWorkyUnits">
+			</div>
+			<div class="form-group col-md-4" [class.has-error]="!waForm.controls['PricePerWorkUnit'].valid">
+				<label for="title">Prijs per extra eenheid</label>
+				<div class="input-group ">
+					<input type="number" formControlName="PricePerWorkUnit" class="form-control with-warning-addon"
+						aria-describedby="basic-addon3" id="PricePerWorkUnit">
+					<span class="input-group-addon input-group-addon-warning addon-right" id="basic-addon3">€</span>
+					<span class="input-group-btn"><button type="button" [class.btn-danger]="wa.SuspendOnZeroWorkUnits" [class.btn-success]="!wa.SuspendOnZeroWorkUnits" (click)="toggleSuspendOnZero()" class="btn btn-with-icon"><i *ngIf="wa.SuspendOnZeroWorkUnits" class="ion-toggle"></i><i *ngIf="!wa.SuspendOnZeroWorkUnits" class="ion-toggle-filled"></i></button></span>
+				</div>
+			</div>
 		</div>
-	</div>
+		<div clas="row formrow">
+			<button type="submit" [disabled]="!waForm.valid" class="btn btn-primary pull-right confbutton"><i class="fa fa-floppy-o" aria-hidden="true"></i> Opslaan</button>
+		</div>
+	</form>
 </div>

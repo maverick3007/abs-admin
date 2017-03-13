@@ -21,6 +21,7 @@ import { ViewsModule } from './views/views.module';
 import {DialogModule} from './dialogs/dialog.module';
 
 import {InitService} from './services';
+import {ValidationService} from './services';
 
 
 
@@ -28,7 +29,8 @@ import {InitService} from './services';
 const APP_PROVIDERS = [
   AppState,
   GlobalState,
-  InitService
+  InitService,
+  ValidationService
 ];
 
 type StoreType = {
