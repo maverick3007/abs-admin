@@ -50,6 +50,10 @@ export class NewWaComponent{
         });
     }
 
+    ngOnDestroy(){
+        this._state.unsublast('customer.details');
+    }
+
     selectOtherCustomer(){
         this._state.notify('popup.customerselect', '');
     }

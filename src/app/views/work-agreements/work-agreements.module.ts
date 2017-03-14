@@ -6,6 +6,8 @@ import { CKEditorModule } from 'ng2-ckeditor';
 
 import {WorkAgreementsComponent} from './work-agreements.component';
 import { NewWaComponent } from './new-wa/new-wa.component';
+import { WaListComponent } from './wa-list/wa-list.component';
+import { WaTableComponent } from './components/wa-table/wa-table.component';
 
 
 import { routing }       from './work-agreements.routing';
@@ -20,7 +22,7 @@ import { routing }       from './work-agreements.routing';
     routing
   ],
   declarations: [
-    WorkAgreementsComponent, NewWaComponent
+    WorkAgreementsComponent, NewWaComponent,WaListComponent, WaTableComponent
   ],
   providers: [
 

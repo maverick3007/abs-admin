@@ -1,0 +1,31 @@
+<div class="row">
+	<table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Klant</th>
+                <th>Type</th>
+                <th>Van</th>
+                <th>Tot</th>
+                <th>Besch. Units</th>
+            </tr>
+        </thead>
+		<tbody>
+			<tr *ngFor="let wa of was" (click)='selectWa(wa)' class="no-top-border" >
+				<td></td>
+				<td class="align-left">{{wa.Id}}</td>
+				<td class="align-right">{{wa.Customer.Name}}</td>
+				<td class="align-right">{{wa.StartDate | date:"dd/MM/yy" }}</td>
+				<td class="align-right">{{wa.EndDate | date:"dd/MM/yy"}}</td>
+                <td></td>
+			</tr>
+		</tbody>
+	</table>
+	<div *ngIf="loading">
+		<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+		<span class="sr-only">Loading...</span>
+	</div>
+	<div *ngIf="!loading" style="margin-top=10px">
+		<button (click)="getWas()" *ngIf="hasMoreEntries" type="button" class="btn btn-default btn-with-icon"><i class="ion-search"></i>Meer laden</button>
+	</div>
+</div>

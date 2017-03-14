@@ -49,12 +49,19 @@ export const PAGES_MENU = [
                         order: 350
                     }
                 },
-                children: [
+                children: [                                       {
+                        path: 'walist',
+                        data: {
+                            menu: {
+                                title: 'Werkdoc Lijst',
+                            }
+                        }
+                    },
                     {
                         path: 'newwa',
                         data: {
                             menu: {
-                                title: 'Nieuw Werkdocument',
+                                title: 'Nieuw Werkdoc',
                             }
                         }
                     }
