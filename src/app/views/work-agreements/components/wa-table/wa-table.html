@@ -12,7 +12,6 @@
         </thead>
 		<tbody>
 			<tr *ngFor="let wa of was" (click)='selectWa(wa)' class="no-top-border" >
-				<td></td>
 				<td class="align-left">{{wa.Id}}</td>
 				<td class="align-right">{{wa.Customer.Name}}</td>
 				<td class="align-right">{{wa.StartDate | date:"dd/MM/yy" }}</td>

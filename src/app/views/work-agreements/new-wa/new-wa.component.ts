@@ -70,9 +70,23 @@ export class NewWaComponent{
     }
 
     createAgreement(){
+        this.wa.WorkAgreementTypeId = this.waForm.controls['WorkAgreementTypeId'].value;
+        this.wa.PricePerWorkUnit = this.waForm.controls['PricePerWorkUnit'].value;
+        this.wa.Name = this.waForm.controls['Name'].value;
+        this.wa.Scope = this.waForm.controls['Scope'].value;
+        this.wa.StartDate = this.waForm.controls['StartDate'].value;
+        this.wa.EndDate = this.waForm.controls['EndDate'].value;
+        this.wa.SalesPrice = this.waForm.controls['SalesPrice'].value;
+        this.wa.NrOfWorkUnitsOnStart = this.waForm.controls['NrOfWorkUnitsOnStart'].value;
+        this.wa.NrOfMonthlWorkyUnits = this.waForm.controls['NrOfMonthlWorkyUnits'].value;
         this.auth.apiPost('workagreement', this.wa).subscribe(newWa =>{
-            alert(newWa['Id']);
+            this.afterCreation(newWa['Id']);
         });
+    }
+
+    afterCreation(id){
+        this._state.notify('popup.message', {title:'nieuwe overeenkomst', message:id});
+        this._router.navigate(['/views/workagreements/walist' ])
     }
 }
 
@@ -81,10 +95,11 @@ class WorkAgreement{
     WorkAgreementTypeId:string;
     SuspendOnZeroWorkUnits: boolean;
     PricePerWorkUnit: number;
+    Scope: string;
     Name: string;
     StartDate: Date;
     EndDate:Date;
-    DalesPrice:Number;
+    SalesPrice:Number;
     NrOfWorkUnitsOnStart: number;
     NrOfMonthlWorkyUnits: number;
 }

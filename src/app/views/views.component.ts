@@ -6,6 +6,7 @@ import {Component, ViewEncapsulation} from '@angular/core';
   styles: [],
   template: `
       <dialog-error></dialog-error>
+      <dialog-message></dialog-message>
     <dialog-customer-select></dialog-customer-select>
     <dialog-document-select></dialog-document-select>
     <dialog-document-opt-select></dialog-document-opt-select>
