@@ -19,14 +19,14 @@ export class NewTicketComponent {
     priorities: Array<Object>;
     statuses: Array<Object>;
     users: Array<Object>;
-    constructor(private route: ActivatedRoute, private _router: Router, private _location: Location, private auth: AuthenticationService, private _state: GlobalState, private _init: InitService) {
-        this.route.params    
+    constructor(private route: ActivatedRoute, private _router: Router, private _location: Location, private auth: AuthenticationService, private _state: GlobalState, private _init: InitService) {     
+        this.route.params
             .map(params => params['id'])
             .switchMap(id => this.auth.apiGet('customer/' + id))
             .subscribe(cust => {
-                if(cust.Id == null){
+                if (cust.Id == null) {
                     this._state.notify('popup.customerselect', '');
-                }else{
+                } else {
                     this.ticket.Customer = cust;
                 }
             });
@@ -39,26 +39,39 @@ export class NewTicketComponent {
         this.priorities = this._init.taskTicketpriorities;
         this.statuses = this._init.taskTicketStatuses;
         this.users = this._init.taskTicketusers;
-        this.ticket.StatusId="10";
-        this.ticket.PriorityId="20";
+        this.ticket.StatusId = "10";
+        this.ticket.PriorityId = "20";
         this.ticket.WorkUnits = 0;
         this.auth.apiGet('user/me').subscribe(me => this.ticket.AssignedToId = me['Id'])
     }
 
-    createTicket(){
-        this.auth.apiPost('taskticket', this.ticket).subscribe(newticket =>{
-            this._router.navigate(['/views/tickets/ticketdetails' , newticket['Id']])
+    ngAfterContentChecked(){
+        this._state.notifyDataChanged('menu.activeLink', { title: 'Nieuw Ticket '  });
+    }
+
+    ngOnDestroy() {
+        this._state.unsublast('customer.details');
+        this._state.unsublast('customer.noneselected');
+    }
+
+    navToCustomer() {
+        this._state.notify('popup.customerselect', '');
+    }
+
+    createTicket() {
+        this.auth.apiPost('taskticket', this.ticket).subscribe(newticket => {
+            this._router.navigate(['/views/tickets/ticketdetails', newticket['Id']])
         })
     }
 }
 
 
 
-class Ticket{
-    Description:string;
-    PriorityId:string;
-    StatusId:string;
-    AssignedToId:string;
-    WorkUnits:number;
-    Customer:Object;
+class Ticket {
+    Description: string;
+    PriorityId: string;
+    StatusId: string;
+    AssignedToId: string;
+    WorkUnits: number;
+    Customer: Object;
 }

@@ -18,6 +18,11 @@ export class BaMenuService {
     return this._currentMenuItem;
   }
 
+  public setCurrentItem(id)
+  {
+    
+  }
+
   public selectMenuItem(menuItems:any[]):any[] {
     let items = [];
     menuItems.forEach((item) => {
