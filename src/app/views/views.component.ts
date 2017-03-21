@@ -22,12 +22,12 @@ import {Component, ViewEncapsulation} from '@angular/core';
     <footer class="al-footer clearfix">
       <div class="al-footer-right">Created with <i class="ion-heart"></i></div>
       <div class="al-footer-main clearfix">
-        <div class="al-copy">&copy; <a href="http://www.ankabs.be">Anka Business Systems</a> 2016</div>
+        <div class="al-copy">&copy; <a href="http://www.ankabs.be">Anka Business Systems</a> 2016 <strong>VERSION 0.1.2</strong></div>
         <ul class="al-share clearfix">
-          <li><i class="socicon socicon-facebook"></i></li>
+          <!--<li><i class="socicon socicon-facebook"></i></li>
           <li><i class="socicon socicon-twitter"></i></li>
           <li><i class="socicon socicon-google"></i></li>
-          <li><i class="socicon socicon-github"></i></li>
+          <li><i class="socicon socicon-github"></i></li>-->
         </ul>
       </div>
     </footer>
