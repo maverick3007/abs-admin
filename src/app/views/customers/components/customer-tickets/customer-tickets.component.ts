@@ -32,7 +32,7 @@ export class CustomerTicketsComponent implements OnChanges {
     getTickets() {
         this.page++;
         this.loading = true;
-        this._auth.apiGet('customer/' + this.customer['Id'] + '/tasktickets?pger=' + this.page).subscribe(ticks => this.extractTickets(ticks))
+        this._auth.apiGet('customer/' + this.customer['Id'] + '/tasktickets?pger=' + this.page + '&incclosed=Y').subscribe(ticks => this.extractTickets(ticks))
     }
 
     extractTickets(ticks){
