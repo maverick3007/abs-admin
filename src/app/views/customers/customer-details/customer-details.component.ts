@@ -13,14 +13,16 @@ import { Subscription } from 'rxjs/Subscription';
 
 export class CustomerDetailsComponent  {
     customer;
-    constructor(private route: ActivatedRoute, private messageService: MessageService, private auth: AuthenticationService){
+    constructor(private route: ActivatedRoute, private _router: Router, private messageService: MessageService, private auth: AuthenticationService){
                 this.route.params
         .map(params => params['id'])
         .switchMap(id => this.auth.apiGet('customer/' + id ))
         .subscribe(customer => this.customer = customer);
     }
 
-
+createTicket(){
+    this._router.navigate(['/views/tickets/newticket' , this.customer['Id']]);
+}
 
 
 

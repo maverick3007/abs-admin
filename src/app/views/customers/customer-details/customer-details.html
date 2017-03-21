@@ -11,6 +11,7 @@
 
 	</div>
 	<div class="col-md-12">
+		<button type="button" (click)="createTicket()" class="btn btn-primary pull-right"><i class="ion-plus-round" aria-hidden="true"></i> Nieuw ticket</button>
 		<ba-card title="Tickets" baCardClass=" with-scroll">
 			<customer-tickets [customer]="customer"></customer-tickets>
 		</ba-card>
