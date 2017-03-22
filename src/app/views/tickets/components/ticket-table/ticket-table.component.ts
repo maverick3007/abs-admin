@@ -12,7 +12,7 @@ import {GlobalState} from '../../../../global.state';
 
 export class TicketTableComponent implements OnInit{
     tickets: Array<Object>= [];;
-    filterString: string;
+    filterString: string = '';
     page: number;
     hasMoreEntries:boolean;
     loading:boolean;
