@@ -56,7 +56,8 @@
 		</div>
 	</div>
 	<div class="row" class="formrow">
-		<button type="button" *ngIf="(!editing)" (click)="toggleAddingWork()" class="btn btn-primary "><i class="fa fa-clock-o" aria-hidden="true"></i> Werk registreren</button>
+		<button  type="button" *ngIf="(!editing && (loadedStatus < 50))" (click)="toggleAddingWork()" class="btn btn-primary "><i class="fa fa-clock-o" aria-hidden="true"></i> Werk registreren</button>
+		<button  type="button" *ngIf="(!editing && (loadedStatus == 50))" (click)="bookWork()" class="btn btn-success "><i class="fa fa-clock-o" aria-hidden="true"></i> Werk boeken</button>
 		<div *ngIf="addingWork">
 		<label>Werk registreren:</label>		
 		<input type="text" class="form-control" id="inlineFormInput" placeholder="beschrijving werk..." [(ngModel)]="newWork.Title">

@@ -26,6 +26,7 @@ export class TicketDetailsComponent implements AfterViewChecked {
     editAssignedToId: string = "";
     editPriorityId: string = "";
     editStatusId: string = "";
+    loadedStatus: number;
     priorities: Array<Object>;
     statuses: Array<Object>;
     users: Array<Object>;
@@ -35,6 +36,7 @@ export class TicketDetailsComponent implements AfterViewChecked {
             .switchMap(id => this.auth.apiGet('taskticket/' + id))
             .subscribe(ticket => {
                 this.ticket = ticket;
+                this.loadedStatus = ticket.StatusId;
                 this.refreshTaskTicket();
             });
     }
@@ -139,6 +141,9 @@ export class TicketDetailsComponent implements AfterViewChecked {
         }
     }
 
+    bookWork(){
+        this._router.navigate(['/views/tickets/ticketworkbooking' ,this.ticket['Id']]);
+    }
 
     ngAfterViewChecked() {
         this.priorities = this._init.taskTicketpriorities;

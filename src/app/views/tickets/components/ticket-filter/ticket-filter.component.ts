@@ -57,6 +57,7 @@ export class TicketFilterComponent implements AfterViewInit {
         this.priorities = this._init.taskTicketpriorities;
         this.statuses = this._init.taskTicketStatuses;
         this.users = this._init.taskTicketusers;
+        this.filterNow()
     }
 
     clearCustomer(){

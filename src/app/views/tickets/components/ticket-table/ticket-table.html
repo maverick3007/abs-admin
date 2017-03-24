@@ -1,14 +1,27 @@
 <div class="row">
 	<table class="table table-hover">
+		        <thead>
+            <tr>
+				<th></th>
+                <th>Id</th>
+                <th>Titel</th>
+                <th>Datum</th>
+                <th>Klant</th>
+                <th>Prioriteit</th>
+                <th>Status</th>
+				<th>Werkeenheden</th>
+            </tr>
+        </thead>
 		<tbody>
 			<tr *ngFor="let ticket of tickets" (click)='selectTicket(ticket)' class="no-top-border" >
 				<td></td>
 				<td class="align-left">{{ticket.Id}}</td>
-				<td class="align-right">{{ticket.Title}}</td>
-				<td class="align-right">{{ticket.CreatedDate | date:"dd/MM/yy" }}</td>
-				<td class="align-right">{{ticket.Customer.Name}}</td>
-				<td class="align-right">{{ticket.Priority.Name}}</td>
-				<td class="align-right">{{ticket.Status.Name}}</td>
+				<td class="align-left">{{ticket.Title}}</td>
+				<td class="align-center">{{ticket.CreatedDate | date:"dd/MM/yy" }}</td>
+				<td class="align-left">{{ticket.Customer.Name}}</td>
+				<td class="align-left">{{ticket.Priority.Name}}</td>
+				<td class="align-left">{{ticket.Status.Name}}</td>
+				<td class="align-left">{{ticket.WorkUnits}}</td>
 			</tr>
 		</tbody>
 	</table>

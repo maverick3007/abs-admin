@@ -19,6 +19,7 @@ export class NewWaComponent{
     wa: WorkAgreement = new WorkAgreement;
     waTypes: Array<Object>;
     waForm:FormGroup;
+    Customer:Object;
     constructor(@Inject(FormBuilder) fb: FormBuilder, private route: ActivatedRoute, private _router: Router, private _location: Location, private auth: AuthenticationService, private _state: GlobalState, private _init: InitService){
         this.route.params    
             .map(params => params['id'])
@@ -27,12 +28,12 @@ export class NewWaComponent{
                 if(cust.Id == null){
                     this._state.notify('popup.customerselect', '');
                 }else{
-                    this.wa.Customer = cust;
+                    this.Customer = cust;
                 }
             });
             this.waTypes = this._init.waTypes;
             this._state.subscribe('customer.details', (value) => {
-            this.wa.Customer = value;
+            this.Customer = value;
             this.wa.SuspendOnZeroWorkUnits = false;
             this.wa.PricePerWorkUnit = 0;
             
@@ -79,6 +80,7 @@ export class NewWaComponent{
         this.wa.SalesPrice = this.waForm.controls['SalesPrice'].value;
         this.wa.NrOfWorkUnitsOnStart = this.waForm.controls['NrOfWorkUnitsOnStart'].value;
         this.wa.NrOfMonthlWorkyUnits = this.waForm.controls['NrOfMonthlWorkyUnits'].value;
+        this.wa.CustomerId = this.Customer['Id'];
         this.auth.apiPost('workagreement', this.wa).subscribe(newWa =>{
             this.afterCreation(newWa['Id']);
         });
@@ -91,7 +93,7 @@ export class NewWaComponent{
 }
 
 class WorkAgreement{
-    Customer:Object;
+    CustomerId:string;
     WorkAgreementTypeId:string;
     SuspendOnZeroWorkUnits: boolean;
     PricePerWorkUnit: number;

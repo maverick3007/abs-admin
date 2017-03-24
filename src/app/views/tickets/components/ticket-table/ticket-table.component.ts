@@ -30,10 +30,10 @@ export class TicketTableComponent implements OnInit{
     ngOnInit(){
         this.page = 0;
         //this.filterString = '';
-        this.tickets = [];
+        //this.tickets = [];
         this.hasMoreEntries = false;
         this.loading = false;
-         this.getTickets();
+        // this.getTickets();
     }
 
     getTickets(){

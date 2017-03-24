@@ -1,9 +1,9 @@
-<div *ngIf="!!wa.Customer">
+<div *ngIf="!!Customer">
 	<div class="row formrow" style="margin-bottom:20px">
 		<form class="form-inline">
 			<div class="form-group col-md-12">
 				<label>Klant:</label>
-				<button type="button" (click)="selectOtherCustomer()" class="btn btn-primary "><i class="fa fa-user" aria-hidden="true"></i> {{wa.Customer.Name}}</button>
+				<button type="button" (click)="selectOtherCustomer()" class="btn btn-primary "><i class="fa fa-user" aria-hidden="true"></i> {{Customer.Name}}</button>
 			</div>
 		</form>
 	</div>

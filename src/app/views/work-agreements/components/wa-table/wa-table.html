@@ -7,16 +7,19 @@
                 <th>Type</th>
                 <th>Van</th>
                 <th>Tot</th>
-                <th>Besch. Units</th>
+                <th>Werkbalans</th>
+				<th>Billable</th>
             </tr>
         </thead>
 		<tbody>
 			<tr *ngFor="let wa of was" (click)='selectWa(wa)' class="no-top-border" >
 				<td class="align-left">{{wa.Id}}</td>
-				<td class="align-right">{{wa.Customer.Name}}</td>
-				<td class="align-right">{{wa.StartDate | date:"dd/MM/yy" }}</td>
-				<td class="align-right">{{wa.EndDate | date:"dd/MM/yy"}}</td>
-                <td></td>
+				<td class="align-left">{{wa.Customer.Name}}</td>
+				<td class="align-left">{{wa.Name}}</td>
+				<td class="align-left">{{wa.StartDate | date:"dd/MM/yy" }}</td>
+				<td class="align-left">{{wa.EndDate | date:"dd/MM/yy"}}</td>
+                <td class="align-right">{{wa.WorkUnitCounter.Balance}}</td>
+				<td class="align-right">{{wa.WorkUnitCounter.Billable | currency:'EUR':true}}</td>
 			</tr>
 		</tbody>
 	</table>
