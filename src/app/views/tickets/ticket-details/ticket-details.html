@@ -55,7 +55,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" class="formrow">
+	<!--<div class="row" class="formrow">
 		<button  type="button" *ngIf="(!editing && (loadedStatus < 50))" (click)="toggleAddingWork()" class="btn btn-primary "><i class="fa fa-clock-o" aria-hidden="true"></i> Werk registreren</button>
 		<button  type="button" *ngIf="(!editing && (loadedStatus == 50))" (click)="bookWork()" class="btn btn-success "><i class="fa fa-clock-o" aria-hidden="true"></i> Werk boeken</button>
 		<div *ngIf="addingWork">
@@ -68,7 +68,7 @@
 					<button type="button"  (click)="toggleAddingWork()" class="btn btn-danger ">Annuleren</button>
 			</div>
 		</div>
-	</div>
+	</div>-->
 	<div class="row" class="formrow">
 		<button type="button" *ngIf="(!editing)" (click)="toggleAddingComment()" class="btn btn-primary "><i class="fa fa-plus" aria-hidden="true"></i> Commentaar toevoegen</button>
 		<div *ngIf="addingComment">
@@ -80,6 +80,8 @@
 	</div>
 </div>
 <div class="row">
+	<div class="col-md-6">
+		<h4>Logboek</h4>
 	<table class="table table-bordered">
 		<tr *ngFor="let event of events">
 			<td class="align-left">{{event.EventDate | date:"dd/MM/yy"}}</td>
@@ -87,4 +89,9 @@
 			</td>
 		</tr>
 	</table>
+	</div>
+	<div class="col-md-6" >
+		<h4>Werkregistratie</h4>
+		<ticket-workbooking [ticket]="ticket"></ticket-workbooking>
+	</div>
 </div>

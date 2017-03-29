@@ -1,0 +1,37 @@
+<div *ngIf="!!ticket">
+	<div class="row" style="margin-bottom:10px">
+		<label for="StartDate">Datum:</label>
+		<input type="date" [(ngModel)]="BookDate" class="form-control" id="BookingDate">
+	</div>
+	<div class="row" style="margin-bottom:10px">
+		<label for="StartDate">Beschrijving:</label>
+		<input type="string" [(ngModel)]="booking.Description" class="form-control" id="BookingDate">
+	</div>
+	<div class="row">
+		<table class="table">
+			<tr *ngFor="let line of booking.Lines">
+				<td class="align-left">{{line.WaId}}</td>
+				<td class="align-left">{{line.WaName}}</td>
+				<td class="align-left">{{line.WaBalance}}</td>
+				<td width="100px" [class.has-error]="line.isInError()" class="align-left"><input type="number" class="form-control" [(ngModel)]="line.NrBooked" id="input01"></td>
+			</tr>
+		</table>
+	</div>
+	<div class="row" style="margin-top:10px">
+		<button (click)="persist()" [disabled]="!booking.canPersist()" class="btn btn-primary pull-right confbutton"><i class="fa fa-floppy-o" aria-hidden="true"></i> Boeken</button>
+	</div>
+	<div class="row">
+		<h4>Registraties</h4>
+		<p *ngIf="bookings.length == 0">nog geen werk geregistreerd</p>
+		<table class="table table-bordered">
+			<tr *ngFor="let booking of bookings">
+				<td class="align-left">{{booking.WorkDate | date:"dd/MM/yy"}}</td>
+				<td class="align-left">{{booking.User.Name}}</td>
+				<td class="align-left">{{booking.WorkAgreementId}}</td>
+				<td class="align-left">{{booking.Description}}</td>
+				<td class="align-left">{{booking.NrOfUnits}}</td>
+				<td class="align-left">{{booking.SalesPrice| currency:'EUR':true}}</td>
+			</tr>
+		</table>
+	</div>
+</div>

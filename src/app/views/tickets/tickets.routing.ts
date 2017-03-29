@@ -17,7 +17,6 @@ const routes: Routes = [
       { path: 'newticket', component: NewTicketComponent},
       { path: 'newticket/:id', component: NewTicketComponent},
       { path: 'ticketdetails/:id', component: TicketDetailsComponent},
-      { path: 'ticketworkbooking/:id', component: TicketWorkbookingComponent}
     ]
   }
 ];
